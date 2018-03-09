@@ -13,7 +13,7 @@ module Rich
         do_not_validate_attachment_file_type :rich_file
         validates_attachment_presence :rich_file
         validate :check_content_type
-        validates_attachment_size :rich_file, :less_than=>15.megabyte, :message => "must be smaller than 15MB"
+        validates_attachment_size :rich_file, :less_than=>50.megabyte, :message => "must be smaller than 50MB"
 
         after_create :cache_style_uris_and_save
         before_update :cache_style_uris
@@ -56,7 +56,7 @@ module Rich
         self.uri_cache = uris.to_json
       end
 
-      def clean_file_name      
+      def clean_file_name
         extension = File.extname(rich_file_file_name).gsub(/^\.+/, '')
         filename = rich_file_file_name.gsub(/\.#{extension}$/, '')
 

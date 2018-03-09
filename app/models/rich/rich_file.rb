@@ -18,7 +18,7 @@ module Rich
     end
     validates_attachment_presence :rich_file
     validate :check_content_type
-    validates_attachment_size :rich_file, :less_than=>15.megabyte, :message => "must be smaller than 15MB"
+    validates_attachment_size :rich_file, :less_than=>50.megabyte, :message => "must be smaller than 50MB"
 
     before_create :clean_file_name
 
